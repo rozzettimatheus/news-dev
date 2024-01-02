@@ -1,6 +1,10 @@
 'use client'
 
-export function SubscribeButton() {
+type SubscribeButtonProps = {
+  priceId: string
+}
+
+export function SubscribeButton({ priceId }: SubscribeButtonProps) {
   return (
     <button
       type="button"
