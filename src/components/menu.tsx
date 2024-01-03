@@ -1,3 +1,5 @@
+'use client'
+
 import * as Dropdown from '@radix-ui/react-dropdown-menu'
 import { AlignRight } from 'lucide-react'
 import { twMerge } from 'tailwind-merge'

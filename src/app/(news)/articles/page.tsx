@@ -1,3 +1,5 @@
+import { ProfileCard } from '@/components/profile-card'
+
 export default function Articles() {
-  return <div>Articles</div>
+  return <div></div>
 }

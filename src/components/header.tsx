@@ -1,8 +1,6 @@
-'use client'
-
 import { NewsDevLogo } from './logo'
 import { Menu } from './menu'
-import { SignInButton } from './signin-button'
+import { SignInFlow } from './sign-in-flow'
 
 export function Header() {
   return (
@@ -25,7 +23,7 @@ export function Header() {
         </nav>
         <div className="ml-auto flex items-center gap-4">
           <Menu className="md:hidden" />
-          <SignInButton />
+          <SignInFlow />
         </div>
       </div>
     </header>
