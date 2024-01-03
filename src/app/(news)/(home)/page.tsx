@@ -1,32 +1,26 @@
 import { Metadata } from 'next'
 import Image from 'next/image'
 
-import { env } from '@/config/env'
-import { stripeClient } from '@/lib/stripe'
+import { api } from '@/lib/api'
 import { SubscribeButton } from '@/components/subscribe-button'
-import { currency } from '@/lib/utils/currency'
 
 export const metadata: Metadata = {
   title: 'Home'
 }
 
 type ProductInfo = {
-  product: {
-    priceId: string
-    amount?: string
-    recurringInterval?: string
-  }
+  priceId: string
+  amount?: string
+  recurringInterval?: string
 }
 
-async function getPriceInfo(): Promise<ProductInfo> {
-  const price = await stripeClient.prices.retrieve(env.PRODUCT_PRICE_ID)
-  return {
-    product: {
-      priceId: price.id,
-      amount: price.unit_amount ? currency.format(price.unit_amount / 100) : '',
-      recurringInterval: price.recurring?.interval
+async function getPriceInfo(): Promise<{ product: ProductInfo }> {
+  const response = await api('/price', {
+    next: {
+      revalidate: 60 * 60 // 1h
     }
-  }
+  })
+  return response.json()
 }
 
 export default async function Home() {
