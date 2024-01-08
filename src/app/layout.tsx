@@ -28,7 +28,7 @@ export default async function RootLayout({
 
   return (
     <html lang="en" className={lato.className}>
-      <body className="bg-zinc-950 text-zinc-50">
+      <body className="bg-slate-50 text-slate-900 dark:bg-zinc-950 dark:text-zinc-50">
         <NextAuthClientProvider session={session}>
           {children}
         </NextAuthClientProvider>

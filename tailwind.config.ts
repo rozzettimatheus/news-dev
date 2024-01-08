@@ -11,7 +11,7 @@ const config: Config = {
       borderRadius: {
         'link-indicator': '3px 3px 0 0'
       },
-      height: {
+      minHeight: {
         hero: 'calc(100vh - 5rem)'
       },
       keyframes: {

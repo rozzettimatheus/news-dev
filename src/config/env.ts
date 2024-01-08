@@ -6,7 +6,8 @@ const envSchema = z.object({
   STRIPE_API_KEY: z.string(),
   PRODUCT_PRICE_ID: z.string(),
   GITHUB_CLIENT_ID: z.string(),
-  GITHUB_CLIENT_SECRET: z.string()
+  GITHUB_CLIENT_SECRET: z.string(),
+  FAUNADB_SECRET_KEY: z.string()
 })
 
 const parsedEnv = envSchema.safeParse(process.env)

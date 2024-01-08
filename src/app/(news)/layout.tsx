@@ -6,7 +6,9 @@ export default function StoreLayout({ children }: { children: ReactNode }) {
   return (
     <main className="min-h-screen w-full">
       <Header />
-      <div className="mx-auto max-w-[1380px] h-hero">{children}</div>
+      <div className="mx-auto max-w-[1380px] min-h-hero flex flex-col">
+        {children}
+      </div>
     </main>
   )
 }

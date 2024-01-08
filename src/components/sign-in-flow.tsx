@@ -2,7 +2,6 @@
 
 import * as HoverCard from '@radix-ui/react-hover-card'
 import { Github, X } from 'lucide-react'
-import { twMerge } from 'tailwind-merge'
 import { signIn, signOut, useSession } from 'next-auth/react'
 
 import { ProfileCard } from './profile-card'
@@ -13,15 +12,11 @@ export function SignInFlow() {
 
   if (status === 'authenticated') {
     return (
-      <div
-        className={twMerge(
-          'bg-zinc-800  h-12 px-6 rounded-full flex items-center justify-center text-zinc-50 font-bold'
-        )}
-      >
+      <div className="bg-green-600 dark:bg-zinc-800  h-12 px-6 rounded-full flex items-center justify-center text-zinc-50 font-bold">
         <HoverCard.Root>
           <HoverCard.Trigger asChild>
             <div className="flex cursor-default">
-              <Github className="w-5 h-5 md:w-6 md:h-6 mr-4 text-green-500" />
+              <Github className="w-6 h-6 md:w-7 md:h-7 mr-4 text-slate-100 dark:text-green-500" />
               <span className="hidden md:inline-block mr-4">
                 {data?.user?.name}
               </span>
@@ -43,12 +38,10 @@ export function SignInFlow() {
   return (
     <button
       type="button"
-      className={twMerge(
-        'bg-zinc-800 h-10 md:h-12 px-5 md:px-6 rounded-full flex items-center justify-center text-zinc-50 font-bold transition hover:brightness-90'
-      )}
+      className="bg-yellow-400 dark:bg-zinc-800 h-10 md:h-12 px-5 md:px-6 rounded-full flex items-center justify-cente font-bold transition hover:brightness-90"
       onClick={() => signIn('github')}
     >
-      <Github className="w-6 h-6 md:w-7 md:h-7 md:mr-4 text-yellow-500" />
+      <Github className="w-6 h-6 md:w-7 md:h-7 md:mr-4 dark:text-yellow-500" />
       <span className="hidden md:inline">Sign in with Github</span>
     </button>
   )

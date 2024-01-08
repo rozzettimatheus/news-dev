@@ -2,22 +2,24 @@
 
 import * as Dropdown from '@radix-ui/react-dropdown-menu'
 import { AlignRight } from 'lucide-react'
-import { twMerge } from 'tailwind-merge'
 
-type MenuProps = {
-  className?: string
-}
-
-export function Menu({ className }: MenuProps) {
+export function Menu() {
   return (
     <Dropdown.Root>
       <Dropdown.Trigger asChild>
-        <button className={twMerge('rounded-lg p-1.5', className)}>
-          <AlignRight className="h-5 w-5" />
+        <button
+          className="inline-block md:hidden rounded-md p-1.5 outline-none focus:ring-2 focus:ring-yellow-300 data-[state=open]:text-yellow-500 data-[state=open]:bg-zinc-800"
+          aria-label="Navigation"
+        >
+          <AlignRight className="h-6 w-6 text-inherit" />
         </button>
       </Dropdown.Trigger>
       <Dropdown.Portal>
-        <Dropdown.Content className="w-max rounded-md bg-zinc-700 px-4 py-2">
+        <Dropdown.Content
+          sideOffset={6}
+          className="w-max rounded-md bg-zinc-700 px-4 py-2"
+        >
+          <Dropdown.Arrow className="fill-zinc-700" />
           <Dropdown.Label className="text-xs uppercase font-bold text-yellow-500 mb-2">
             Pages
           </Dropdown.Label>

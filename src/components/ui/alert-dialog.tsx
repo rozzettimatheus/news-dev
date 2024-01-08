@@ -25,11 +25,11 @@ function AlertDialogTrigger({ children }: AlertDialogTriggerProps) {
 function AlertDialogContent({ className, ...props }: AlertDialogContentProps) {
   return (
     <RadixAlertDialog.Portal>
-      <RadixAlertDialog.Overlay className="bg-zinc-950/40 fixed inset-0 backdrop-blur-sm" />
+      <RadixAlertDialog.Overlay className="bg-slate-400/20 dark:bg-zinc-950/40 fixed inset-0 backdrop-blur-sm" />
       <RadixAlertDialog.Content
         {...props}
         className={twMerge(
-          'fixed top-[50%] left-[50%] max-h-[85vh] w-[90vw] max-w-[500px] translate-x-[-50%] translate-y-[-50%] rounded-md p-6 bg-zinc-900',
+          'fixed top-[50%] left-[50%] max-h-[85vh] w-[90vw] max-w-[500px] translate-x-[-50%] translate-y-[-50%] rounded-md p-6 bg-zinc-100 dark:bg-zinc-900',
           className
         )}
       />
@@ -39,7 +39,7 @@ function AlertDialogContent({ className, ...props }: AlertDialogContentProps) {
 
 function AlertDialogTitle({ children }: AlertDialogTitleProps) {
   return (
-    <RadixAlertDialog.Title className="text-zinc-100 text-lg md:text-xl font-bold leading-relaxed">
+    <RadixAlertDialog.Title className="text-slate-800 dark:text-zinc-100 text-lg md:text-xl font-bold leading-relaxed">
       {children}
     </RadixAlertDialog.Title>
   )
@@ -47,7 +47,7 @@ function AlertDialogTitle({ children }: AlertDialogTitleProps) {
 
 function AlertDialogDescription({ children }: AlertDialogDescriptionProps) {
   return (
-    <RadixAlertDialog.Description className="text-zinc-400 text-md lg:text-lg leading-normal mt-4 mb-5">
+    <RadixAlertDialog.Description className="text-slate-600 dark:text-zinc-400 text-md lg:text-lg leading-normal mt-4 mb-5">
       {children}
     </RadixAlertDialog.Description>
   )
@@ -57,7 +57,7 @@ function AlertDialogCancel({ title, onCancel }: AlertDialogCancelProps) {
   return (
     <RadixAlertDialog.Cancel asChild>
       <button
-        className="min-w-[120px] text-zinc-200 focus:ring-4 focus:ring-zinc-700 outline-none font-semibold text-sm md:text-md rounded-full px-5 py-2 me-2 mb-2"
+        className="min-w-[120px] text-slate-800 dark:text-zinc-200 hover:text-slate-900 dark:hover:text-zinc-300 focus:ring-4 focus:ring-slate-200 dark:focus:ring-zinc-700 outline-none font-semibold text-sm md:text-md rounded-full px-5 py-2 me-2 mb-2 transition"
         onClick={onCancel}
       >
         {title ?? 'Cancel'}
@@ -70,7 +70,7 @@ function AlertDialogAction({ title, onConfirm }: AlertDialogActionProps) {
   return (
     <RadixAlertDialog.Action asChild>
       <button
-        className="min-w-[120px] text-zinc-50 bg-red-600 hover:bg-red-500 transition focus:ring-4 focus:ring-red-400 font-semibold rounded-full text-sm md:text-md px-5 py-2 me-2 mb-2 focus:outline-none"
+        className="min-w-[120px] text-zinc-50 bg-red-500 dark:bg-red-600 hover:bg-red-600 dark:hover:bg-red-500 transition focus:ring-4 focus:ring-red-400 font-semibold rounded-full text-sm md:text-md px-5 py-2 me-2 mb-2 outline-none"
         onClick={onConfirm}
       >
         {title ?? 'Confirm'}

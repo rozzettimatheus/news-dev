@@ -13,9 +13,9 @@ export function LogoutDialog({ signOut }: LogOutDialogProps) {
         <button
           title="Logout"
           type="button"
-          className="cursor-pointer group  rounded-md outline-none focus:ring-2 focus:ring-zinc-400"
+          className="cursor-pointer group  rounded-md outline-none focus:ring-2 focus:ring-slate-300 dark:focus:ring-zinc-400"
         >
-          <LogOut className="w-6 h-6 text-zinc-500 group-hover:text-zinc-300 transition" />
+          <LogOut className="h-6 w-6 text-slate-100 dark:text-zinc-500 group-hover:text-slate-200 dark:group-hover:text-zinc-300 transition" />
         </button>
       </AlertDialog.Trigger>
       <AlertDialog.Content>
