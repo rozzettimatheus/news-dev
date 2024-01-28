@@ -1,7 +1,7 @@
 'use client'
 
 import * as HoverCard from '@radix-ui/react-hover-card'
-import { Github, X } from 'lucide-react'
+import { Github } from 'lucide-react'
 import { signIn, signOut, useSession } from 'next-auth/react'
 
 import { ProfileCard } from './profile-card'

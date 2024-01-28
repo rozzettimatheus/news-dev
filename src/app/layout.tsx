@@ -3,7 +3,8 @@ import { Lato } from 'next/font/google'
 import { getServerSession } from 'next-auth'
 
 import { NextAuthClientProvider } from '@/contexts/nextauth-client-provider'
-import { authOptions } from './api/auth/[...nextauth]/route'
+import { authOptions } from './api/auth/[...nextauth]/auth-options'
+
 import './globals.css'
 
 const lato = Lato({
