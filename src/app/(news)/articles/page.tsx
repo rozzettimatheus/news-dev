@@ -1,5 +1,5 @@
-import { ArticleCard } from '@/components/article-card'
-import { MainArticleCard } from '@/components/article-card-main'
+import { ArticleCard } from '@/components/article'
+import { Pagination } from '@/components/pagination'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -22,15 +22,16 @@ export default function Articles() {
 
   return (
     <section className="py-12">
-      <div className="grid grid-cols-article gap-y-10 gap-x-8">
-        {Array.from({ length: 20 }, (_, i) => i).map((a, idx) =>
-          idx === 0 ? (
-            <MainArticleCard key={a} data={data} />
-          ) : (
-            <ArticleCard key={a} data={data} />
-          )
-        )}
+      <div className="grid grid-cols-article-v md:grid-cols-article-h gap-y-10 gap-x-8">
+        {Array.from({ length: 10 }, (_, i) => i).map((a, idx) => (
+          <ArticleCard
+            key={a}
+            type={idx === 0 ? 'main' : 'default'}
+            data={data}
+          />
+        ))}
       </div>
+      <Pagination />
     </section>
   )
 }
