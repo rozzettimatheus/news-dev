@@ -8,6 +8,9 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      gridTemplateColumns: {
+        article: 'repeat(auto-fit, minmax(580px, 1fr))'
+      },
       borderRadius: {
         'link-indicator': '3px 3px 0 0'
       },

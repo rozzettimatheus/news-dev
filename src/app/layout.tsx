@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Lato } from 'next/font/google'
+import { Lato, Source_Serif_4 } from 'next/font/google'
 import { getServerSession } from 'next-auth'
 
 import { NextAuthClientProvider } from '@/contexts/nextauth-client-provider'
@@ -11,6 +11,10 @@ const lato = Lato({
   weight: ['400', '700', '900'],
   subsets: ['latin']
 })
+// const sourceSerif4 = Source_Serif_4({
+//   weight: ['400', '500', '700', '900'],
+//   subsets: ['latin']
+// })
 
 export const metadata: Metadata = {
   title: {

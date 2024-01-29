@@ -9,3 +9,4 @@
 
 -- CMS (Content Management System)
 
+- Headless CM (Painel de adm + API http, Graphql, SDK)
