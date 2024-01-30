@@ -1,8 +1,8 @@
 import { ReactNode } from 'react'
 
-import { Header } from '@/components/header'
+import { Header } from '@/layouts/header'
 
-export default function StoreLayout({ children }: { children: ReactNode }) {
+export default function NewsDevLayout({ children }: { children: ReactNode }) {
   return (
     <main className="min-h-screen w-full">
       <Header />
