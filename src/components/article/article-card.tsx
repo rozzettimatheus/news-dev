@@ -3,29 +3,34 @@ import Image from 'next/image'
 import { dateUtils } from '@/lib/utils/date'
 import { Tag } from '@/components/ui/tag'
 import { twMerge } from 'tailwind-merge'
+import { AuthorDocument } from '../../../prismicio-types'
+
+export type Thumbnail = {
+  url?: string | null
+  alt?: string | null
+  dimensions?: {
+    width: number
+    height: number
+  } | null
+}
 
 type ArticleCardProps = {
   type: 'default' | 'main'
-  data: {
-    title: string
-    imageUrl: string
-    excerpt: string
-    publishedAt: Date
-    tags: string[]
-    author: {
-      name: string
-      detailsUrl: string
-      imageUrl: string
-    }
-  }
+  title: string
+  thumbnail: Thumbnail
+  updatedAt: Date
+  excerpt: string
+  tags: string[]
+  author: AuthorDocument
 }
 
 const twClasses = {
   main: {
-    root: 'row-span-1 md:row-span-3 col-span-1 sm:col-span-2 md:col-span-1 h-auto bg-violet-500 rounded-md p-5',
+    root: 'row-span-1 md:row-span-3 col-span-1 sm:col-span-2 md:col-span-1 h-auto bg-zinc-950 dark:bg-zinc-50 rounded-md p-5',
     thumbnail: '',
-    readingTime: 'sm:text-md text-zinc-200',
-    heading: 'text-xl sm:text-3xl md:text-4xl text-zinc-50 md:mt-4',
+    readingTime: 'sm:text-md dark:text-zinc-200',
+    heading:
+      'text-xl sm:text-3xl md:text-4xl text-zinc-50 dark:text-zinc-950 md:mt-4',
     excerpt: 'text-zinc-100  md:text-base',
     avatar: 'sm:h-14 sm:w-14 border-zinc-100',
     author: 'sm:text-lg font-bold text-zinc-50',
@@ -43,9 +48,8 @@ const twClasses = {
   } as const
 }
 
-export function ArticleCard({ data, type }: ArticleCardProps) {
-  const { title, imageUrl, excerpt, publishedAt, tags, author } = data
-  const { name, imageUrl: authorImageUrl, detailsUrl } = author
+export function ArticleCard(props: ArticleCardProps) {
+  const { title, thumbnail, excerpt, tags, type, updatedAt, author } = props
   const [firstTag, ...restTags] = tags ?? []
 
   return (
@@ -56,10 +60,10 @@ export function ArticleCard({ data, type }: ArticleCardProps) {
       )}
     >
       <Image
-        src={imageUrl + '?sig=' + Math.round(Math.random() * 10)}
-        alt={title}
-        width={280}
-        height={160}
+        src={thumbnail.url ?? ''}
+        alt={thumbnail.alt ?? ''}
+        width={type === 'default' ? 280 : 1280}
+        height={type === 'default' ? 160 : 720}
         quality={100}
         className={twMerge(
           'w-full block aspect-video object-cover rounded-md',
@@ -73,7 +77,9 @@ export function ArticleCard({ data, type }: ArticleCardProps) {
               <Tag
                 name={firstTag}
                 className={twMerge(
-                  type === 'main' ? 'bg-zinc-50 text-zinc-950' : null
+                  type === 'main'
+                    ? 'bg-zinc-50 dark:bg-zinc-900 text-zinc-950 dark:text-zinc-50'
+                    : null
                 )}
               />
               {restTags?.length > 0 && (
@@ -107,13 +113,13 @@ export function ArticleCard({ data, type }: ArticleCardProps) {
         <p className={twMerge('text-sm', twClasses[type].excerpt)}>{excerpt}</p>
         <div className="flex items-center gap-3 md:gap-4 mt-auto">
           <Image
-            src={authorImageUrl}
-            alt={`Author - ${name}`}
-            width={48}
-            height={48}
+            src={author.data.avatar?.url ?? ''}
+            alt={`Author - ${author.data.name}`}
+            width={author.data.avatar.dimensions?.width}
+            height={author.data.avatar.dimensions?.height}
             quality={100}
             className={twMerge(
-              'h-10 w-10 rounded-full border p-0.5',
+              'h-10 w-10 rounded-full border p-0.5 object-cover',
               twClasses[type].avatar
             )}
           />
@@ -121,10 +127,10 @@ export function ArticleCard({ data, type }: ArticleCardProps) {
             <span
               className={twMerge('text-sm font-bold', twClasses[type].author)}
             >
-              {name}
+              {author.data.name}
             </span>
             <time className={twMerge('text-xs', twClasses[type].publishedDate)}>
-              {dateUtils.format(publishedAt)}
+              {dateUtils.format(updatedAt)}
             </time>
           </div>
         </div>

@@ -7,17 +7,13 @@ type ProductInfo = {
   recurringInterval?: string
 }
 
-async function getPriceInfo(): Promise<{ product: ProductInfo }> {
+export async function Hero() {
   const response = await api('/price', {
     next: {
       revalidate: 60 * 60 // 1h
     }
   })
-  return response.json()
-}
-
-export async function Hero() {
-  const { product } = await getPriceInfo()
+  const { product } = (await response.json()) as { product: ProductInfo }
 
   return (
     <>

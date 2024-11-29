@@ -1,50 +1,41 @@
+import Image from 'next/image'
 import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
-import { SliceZone } from '@prismicio/react'
+import { PrismicRichText } from '@prismicio/react'
 
-import { createClient } from '@/prismicio'
-import { env } from '@/config/env'
+import { getArticleBySlug } from '@/lib/prismicio'
 
-type Params = { slug: string }
-
-export default async function Page({ params }: { params: Params }) {
-  const client = createClient({
-    accessToken: env.PRISMIC_ACCESS_TOKEN
-  })
-  const page = await client
-    .getByUID('article', params.slug)
-    .catch(() => notFound())
-
-  console.log(JSON.stringify(page))
-
-  return <div>Ok</div>
-}
-
-export async function generateMetadata({
-  params
-}: {
-  params: Params
-}): Promise<Metadata> {
-  const client = createClient({
-    accessToken: env.PRISMIC_ACCESS_TOKEN
-  })
-  const page = await client
-    .getByUID('article', params.slug)
-    .catch(() => notFound())
-
-  return {
-    title: page.data.meta_title,
-    description: page.data.meta_description
+type Params = {
+  params: {
+    slug: string
   }
 }
 
-export async function generateStaticParams() {
-  const client = createClient({
-    accessToken: env.PRISMIC_ACCESS_TOKEN
-  })
-  const pages = await client.getAllByType('article')
+export default async function Page({ params }: Params) {
+  const {
+    data: { thumbnail, content, title }
+  } = await getArticleBySlug(params.slug).catch(() => notFound())
+  return (
+    <section className="w-full">
+      <div
+        style={{ backgroundImage: `url(${thumbnail.url})` }}
+        className="w-full h-96 bg-cover bg-no-repeat bg-fixed bg-bottom"
+      />
+      <div className="prose dark:prose-invert prose-md md:prose-lg prose-zinc prose-pre:text-amber-600 mt-12 px-6 max-w-screen-lg mx-auto p-5">
+        <h1 className="text-start text-5xl md:text-6xl leading-snug mb-8">
+          {title}
+        </h1>
+        <PrismicRichText field={content} />
+      </div>
+    </section>
+  )
+}
 
-  return pages.map(page => {
-    return { slug: page.uid }
-  })
+export async function generateMetadata({ params }: Params): Promise<Metadata> {
+  const { data } = await getArticleBySlug(params.slug).catch(() => notFound())
+  const { meta_title: title, meta_description: description } = data
+  return {
+    title,
+    description
+  }
 }

@@ -22,6 +22,17 @@ interface ArticleDocumentData {
   thumbnail: prismic.ImageField<never>;
 
   /**
+   * title field in *article*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: article.title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
    * content field in *article*
    *
    * - **Field Type**: Rich Text
@@ -52,18 +63,7 @@ interface ArticleDocumentData {
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#slices
    */
-  slices: prismic.SliceZone<ArticleDocumentDataSlicesSlice>;
-
-  /**
-   * publish_date field in *article*
-   *
-   * - **Field Type**: Date
-   * - **Placeholder**: *None*
-   * - **API ID Path**: article.publish_date
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#date
-   */
-  publish_date: prismic.DateField /**
+  slices: prismic.SliceZone<ArticleDocumentDataSlicesSlice> /**
    * Meta Description field in *article*
    *
    * - **Field Type**: Text
@@ -73,17 +73,6 @@ interface ArticleDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */;
   meta_description: prismic.KeyTextField;
-
-  /**
-   * Meta Image field in *article*
-   *
-   * - **Field Type**: Image
-   * - **Placeholder**: *None*
-   * - **API ID Path**: article.meta_image
-   * - **Tab**: SEO & Metadata
-   * - **Documentation**: https://prismic.io/docs/field#image
-   */
-  meta_image: prismic.ImageField<never>;
 
   /**
    * Meta Title field in *article*
@@ -114,44 +103,41 @@ export type ArticleDocument<Lang extends string = string> =
   >;
 
 /**
- * Item in *author → author*
+ * Content for author documents
  */
-export interface AuthorDocumentDataAuthorItem {
+interface AuthorDocumentData {
   /**
-   * name field in *author → author*
+   * name field in *author*
    *
    * - **Field Type**: Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: author.author[].name
+   * - **API ID Path**: author.name
+   * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   name: prismic.KeyTextField;
 
   /**
-   * avatar field in *author → author*
+   * avatar field in *author*
    *
    * - **Field Type**: Image
    * - **Placeholder**: *None*
-   * - **API ID Path**: author.author[].avatar
+   * - **API ID Path**: author.avatar
+   * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#image
    */
   avatar: prismic.ImageField<never>;
-}
 
-/**
- * Content for author documents
- */
-interface AuthorDocumentData {
   /**
-   * author field in *author*
+   * bio field in *author*
    *
-   * - **Field Type**: Group
+   * - **Field Type**: Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: author.author[]
+   * - **API ID Path**: author.bio
    * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#group
+   * - **Documentation**: https://prismic.io/docs/field#key-text
    */
-  author: prismic.GroupField<Simplify<AuthorDocumentDataAuthorItem>>;
+  bio: prismic.KeyTextField;
 }
 
 /**
@@ -183,7 +169,6 @@ declare module "@prismicio/client" {
       ArticleDocumentDataSlicesSlice,
       AuthorDocument,
       AuthorDocumentData,
-      AuthorDocumentDataAuthorItem,
       AllDocumentTypes,
     };
   }

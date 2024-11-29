@@ -12,28 +12,26 @@
         },
         "type": "UID"
       },
-      "author": {
-        "type": "Group",
+      "name": {
+        "type": "Text",
         "config": {
-          "label": "author",
-          "repeat": true,
-          "fields": {
-            "name": {
-              "type": "Text",
-              "config": {
-                "label": "name",
-                "placeholder": ""
-              }
-            },
-            "avatar": {
-              "type": "Image",
-              "config": {
-                "label": "avatar",
-                "constraint": {},
-                "thumbnails": []
-              }
-            }
-          }
+          "label": "name",
+          "placeholder": ""
+        }
+      },
+      "avatar": {
+        "type": "Image",
+        "config": {
+          "label": "avatar",
+          "constraint": {},
+          "thumbnails": []
+        }
+      },
+      "bio": {
+        "type": "Text",
+        "config": {
+          "label": "bio",
+          "placeholder": ""
         }
       }
     }

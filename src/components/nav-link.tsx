@@ -11,6 +11,7 @@ type NavLinkProps = LinkProps & {
 
 export function NavLink({ children, ...props }: NavLinkProps) {
   const pathname = usePathname()
+
   return (
     <Link
       className={twMerge(

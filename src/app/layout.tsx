@@ -11,10 +11,6 @@ const lato = Lato({
   weight: ['400', '700', '900'],
   subsets: ['latin']
 })
-// const sourceSerif4 = Source_Serif_4({
-//   weight: ['400', '500', '700', '900'],
-//   subsets: ['latin']
-// })
 
 export const metadata: Metadata = {
   title: {

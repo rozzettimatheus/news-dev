@@ -9,3 +9,8 @@
 .active:after {
   @apply content-[''] absolute w-full h-[3px] bottom-px left-0 rounded-link-indicator bg-yellow-500;
 }
+
+.gradient {
+  background: rgb(250,250,250);
+  background: linear-gradient(90deg, rgba(250,250,250,1) 0%, rgba(165,243,252,1) 73%); 
+}

@@ -8,7 +8,8 @@
     "Main": {
       "uid": {
         "config": {
-          "label": "UID"
+          "label": "slug",
+          "placeholder": ""
         },
         "type": "UID"
       },
@@ -18,6 +19,13 @@
           "label": "thumbnail",
           "constraint": {},
           "thumbnails": []
+        }
+      },
+      "title": {
+        "type": "Text",
+        "config": {
+          "label": "title",
+          "placeholder": ""
         }
       },
       "content": {
@@ -42,13 +50,6 @@
         "config": {
           "choices": {}
         }
-      },
-      "publish_date": {
-        "type": "Date",
-        "config": {
-          "label": "publish_date",
-          "placeholder": ""
-        }
       }
     },
     "SEO & Metadata": {
@@ -58,17 +59,6 @@
           "placeholder": "A brief summary of the page"
         },
         "type": "Text"
-      },
-      "meta_image": {
-        "config": {
-          "constraint": {
-            "height": 1260,
-            "width": 2400
-          },
-          "label": "Meta Image",
-          "thumbnails": []
-        },
-        "type": "Image"
       },
       "meta_title": {
         "config": {
